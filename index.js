@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 })  
 
-
 function generateButtons() {
     const buttonContainer = document.getElementById('buttonContainer');
     document.getElementById('body').style.backgroundColor = 'white';
