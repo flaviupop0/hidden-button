@@ -2,7 +2,7 @@ let noButtons,
     buttonsPress = 0,
     winnerIndex;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("generate").addEventListener("click", function () {
         noButtons = parseInt(document.getElementById("numberButtons").value);
         if (noButtons <= 2) {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function generateButtons() {
     const buttonContainer = document.getElementById("buttonContainer");
     document.getElementById("body").style.backgroundColor = "white";
-    setTimeout(function() {
+    setTimeout(function () {
         winnerIndex = Math.floor(Math.random() * noButtons);
         buttonContainer.innerHTML = "";
         buttonGenerator(buttonContainer);
@@ -36,14 +36,14 @@ function buttonGenerator(container) {
 
 function checkWinner(index, buttons, button) {
     if (index == winnerIndex) {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             button.textContent = "You Won! 🎉";
             document.getElementById("body").style.backgroundColor = "green";
             disableButtons(buttons);
             buttonsPress = 0;
         });
     } else {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             ++buttonsPress;
             button.textContent = "That's not the right one 🥺";
             document.getElementById("body").style.backgroundColor = "red";
