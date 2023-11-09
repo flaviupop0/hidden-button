@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+    margin: auto;
+    font-family: sans-serif;
+}
+
+h2 {
+    text-align: center;
+}
+
+#numberButtons{ 
+    border-radius: 50px;
+    width: 330px;
+    height: 25px;
+}
+
+.check{
+    border-radius: 50px;
+    width: auto;
+    height: 40px;
+    background-color: white;
+    margin: 10px 5px 5px 5px;
+}
