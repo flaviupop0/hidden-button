@@ -1,4 +1,5 @@
 let noButtons;
+let buttonsPress = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("generate").addEventListener("click", function() {
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 })  
 
+
 function generateButtons() {
     const buttonContainer = document.getElementById('buttonContainer');
     document.getElementById('body').style.backgroundColor = 'white';
@@ -22,22 +24,33 @@ function generateButtons() {
             button.textContent = 'Am I the choosen one?';
             button.classList.add('check');
             buttonContainer.appendChild(button);
+            const buttons = buttonContainer.getElementsByTagName('button');
             if (i == winnerIndex) {
                 button.addEventListener("click", function() {
                     button.textContent = 'You Won! 🎉'
                     document.getElementById('body').style.backgroundColor = 'green';
-                    const buttons = buttonContainer.getElementsByTagName('button');
-                    for (let j = 0; j < noButtons; ++j) {
-                        buttons[j].disabled = true;
-                    }
+                    disableButtons(buttons);
                 })
             } else {
                 button.addEventListener("click", function() {
+                    ++buttonsPress;
+                    console.log(buttonsPress);
                     button.textContent = 'That\'s not the right one 🥺';
                     document.getElementById('body').style.backgroundColor = 'red';
+                    if (buttonsPress == 3) {
+                        disableButtons(buttons);
+                        buttonsPress = 0;
+                        alert('You lost, try again by generating a new number of buttons');
+                    }
                 })
             }
         }
     }, 10);
+}
+
+function disableButtons(buttons) {
+    for (let j = 0; j < buttons.length; ++j) {
+        buttons[j].disabled = true;
+    }
 }
 
