@@ -34,16 +34,20 @@ function buttonGenerator(container) {
     }
 }
 
+function attachButtonClickEvent(button, callback) {
+    button.addEventListener("click", callback);
+}
+
 function checkWinner(index, buttons, button) {
     if (index == winnerIndex) {
-        button.addEventListener("click", function () {
+        attachButtonClickEvent(button, function () {
             button.textContent = "You Won! 🎉";
             document.getElementById("body").style.backgroundColor = "green";
             disableButtons(buttons);
             buttonsPress = 0;
         });
     } else {
-        button.addEventListener("click", function () {
+        attachButtonClickEvent(button, function () {
             ++buttonsPress;
             button.textContent = "That's not the right one 🥺";
             document.getElementById("body").style.backgroundColor = "red";
