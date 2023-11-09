@@ -1,4 +1,4 @@
-let noButtons, buttonsPress = 0, winnerIndex
+let noButtons, buttonsPress = 0, winnerIndex;
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("generate").addEventListener("click", function() {
@@ -38,6 +38,7 @@ function checkWinner(index, buttons, button) {
             button.textContent = 'You Won! 🎉'
             document.getElementById('body').style.backgroundColor = 'green';
             disableButtons(buttons);
+            buttonsPress = 0;
         })
     } else {
         button.addEventListener("click", function() {
@@ -45,10 +46,11 @@ function checkWinner(index, buttons, button) {
             button.textContent = 'That\'s not the right one 🥺';
             document.getElementById('body').style.backgroundColor = 'red';
             if (buttonsPress == 3) {
-                disableButtons(buttons);
                 buttonsPress = 0;
+                disableButtons(buttons);
                 alert('You lost, try again by generating a new number of buttons');
             }
+            button.disabled = true;
         })
     }
 }
