@@ -3,6 +3,11 @@ let noButtons;
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("generate").addEventListener("click", function() {
         noButtons = parseInt(document.getElementById('numberButtons').value);
+        if (noButtons <= 2) {
+            alert("Please enter more than 2 buttons to generate");
+        } else {
+            generateButtons();
+        }
     })
 })  
 
@@ -35,3 +40,4 @@ function generateButtons() {
         }
     }, 10);
 }
+
