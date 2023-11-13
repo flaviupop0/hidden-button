@@ -2,25 +2,21 @@ let noButtons,
     buttonsPress = 0,
     winnerIndex;
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("generate").addEventListener("click", function () {
-        noButtons = parseInt(document.getElementById("numberButtons").value);
-        if (noButtons <= 2) {
-            alert("Please enter more than 2 buttons to generate");
-        } else {
-            generateButtons();
-        }
-    });
-});
+function handleGenerateClick() {
+    noButtons = parseInt(document.getElementById("numberButtons").value);
+    if (noButtons <= 2) {
+        alert("Please enter more than 2 buttons to generate");
+    } else {
+        generateButtons();
+    }
+}
 
 function generateButtons() {
     const buttonContainer = document.getElementById("buttonContainer");
     document.body.style.backgroundColor = "white";
-    setTimeout(function () {
-        winnerIndex = Math.floor(Math.random() * noButtons);
-        buttonContainer.innerHTML = "";
-        buttonGenerator(buttonContainer);
-    }, 10);
+    winnerIndex = Math.floor(Math.random() * noButtons);
+    buttonContainer.innerHTML = "";
+    buttonGenerator(buttonContainer);
 }
 
 function buttonGenerator(container) {
