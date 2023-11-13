@@ -1,23 +1,22 @@
 body {
-    text-align: center;
-    margin: auto;
     font-family: sans-serif;
 }
 
-h2 {
+h3 {
     text-align: center;
 }
 
-#numberButtons{ 
-    border-radius: 50px;
-    width: 330px;
-    height: 25px;
+.random {
+    margin: 50px;
 }
 
-.check{
-    border-radius: 50px;
-    width: auto;
-    height: 40px;
-    background-color: white;
-    margin: 10px 5px 5px 5px;
+.custom-input {
+    width: 420px;
+    height: 30px;
+}
+
+#buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }

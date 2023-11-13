@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function generateButtons() {
     const buttonContainer = document.getElementById("buttonContainer");
-    document.getElementById("body").style.backgroundColor = "white";
+    document.body.style.backgroundColor = "white";
     setTimeout(function () {
         winnerIndex = Math.floor(Math.random() * noButtons);
         buttonContainer.innerHTML = "";
@@ -26,11 +26,12 @@ function generateButtons() {
 function buttonGenerator(container) {
     for (let i = 0; i < noButtons; ++i) {
         const button = document.createElement("button");
-        button.textContent = "Am I the choosen one?";
-        button.classList.add("check");
+        button.textContent = "Am I the chosen one?";
+        button.classList.add("btn", "btn-primary", "ml-2", "mb-2");
         container.appendChild(button);
-        const buttons = buttonContainer.getElementsByTagName("button");
-        checkWinner(i, buttons, button);
+        attachButtonClickEvent(button, function () {
+            checkWinner(i, button);
+        });
     }
 }
 
@@ -38,33 +39,30 @@ function attachButtonClickEvent(button, callback) {
     button.addEventListener("click", callback);
 }
 
-function checkWinner(index, buttons, button) {
-    if (index == winnerIndex) {
-        attachButtonClickEvent(button, function () {
-            button.textContent = "You Won! 🎉";
-            document.getElementById("body").style.backgroundColor = "green";
-            disableButtons(buttons);
-            buttonsPress = 0;
-        });
-    } else {
-        attachButtonClickEvent(button, function () {
-            ++buttonsPress;
-            button.textContent = "That's not the right one 🥺";
-            document.getElementById("body").style.backgroundColor = "red";
-            if (buttonsPress == 3) {
-                buttonsPress = 0;
-                disableButtons(buttons);
-                alert(
-                    "You lost, try again by generating a new number of buttons"
-                );
-            }
-            button.disabled = true;
-        });
+function disableButtons() {
+    const buttons = document.getElementsByTagName("button");
+    for (let j = 0; j < buttons.length; ++j) {
+        if (buttons[j].id !== "generate") {
+            buttons[j].disabled = true;
+        }
     }
 }
 
-function disableButtons(buttons) {
-    for (let j = 0; j < buttons.length; ++j) {
-        buttons[j].disabled = true;
+function checkWinner(index, button) {
+    if (index === winnerIndex) {
+        button.textContent = "You Won! 🎉";
+        document.body.style.backgroundColor = "green";
+        disableButtons();
+        buttonsPress = 0;
+    } else {
+        ++buttonsPress;
+        button.textContent = "That's not the right one 🥺";
+        document.body.style.backgroundColor = "red";
+        if (buttonsPress === 3) {
+            buttonsPress = 0;
+            disableButtons();
+            alert("You lost, try again by generating a new number of buttons");
+        }
+        button.disabled = true;
     }
 }
